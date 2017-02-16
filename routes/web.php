@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('question', function(){
-  echo "this is question page";
-});
+Route::get('question', 'QuestionController@index');
 
-Route::get('question/{id}', function($id){
-  echo "get question with id = ". $id;
-});
+Route::get('question/{id}', 'QuestionController@show');
 
 // Route::post('question', function(){
 //   echo "store question with object from POST data";
