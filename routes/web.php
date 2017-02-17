@@ -19,14 +19,8 @@ Route::get('question', 'QuestionController@index');
 
 Route::get('question/{id}', 'QuestionController@show');
 
-// Route::post('question', function(){
-//   echo "store question with object from POST data";
-// });
-//
-// Route::put('question/{id}', function($id){
-//   echo "update question with id = ". $id. " and object from PUT data";
-// });
-//
-// Route::delete('question/{id}', function($id){
-//   echo "delete question with id = ". $id;
-// });
+Route::post('question', 'QuestionController@store');
+
+Route::put('question/{id}', 'QuestionController@update');
+
+Route::delete('question/{id}', 'QuestionController@destroy');
