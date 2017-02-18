@@ -22,7 +22,10 @@ class QuestionController extends Controller
 
   //GET ONE
   public function show($id){
-    return response()->json("get question with id = ". $id);
+    $question =  DB::table('question')
+      ->where('id', $id)
+      ->first();
+    return response()->json($question);
   }
 
   /** POST
@@ -38,13 +41,15 @@ class QuestionController extends Controller
   /** PUT
   * return json response with array with field input and result
   * input: get all request from a Form
-  * result: just plain string value to inform user, with $id from parameter
+  * result: just plain string success
   **/
   public function update(Request $request, $id){
-    return response()->json([
-      "input"=>$request->all(),
-      "result"=>"update question with id = ". $id. " and object from PUT data"
-    ]);
+    $doc = $request->all();
+    DB::table('question')
+            ->where('id', $id)
+            ->update($doc);
+
+    return response()->json("success");
   }
 
   /** DELETE
