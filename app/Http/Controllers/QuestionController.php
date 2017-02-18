@@ -9,8 +9,15 @@ class QuestionController extends Controller
 {
 
   //GET ALL
-  public function index(){
-    return DB::table('question')->get();
+  public function index(Request $request){
+    //get ?search=search as request if exists, else empty string ("")
+    $search = $request->query()?$request->query()['search']:"";
+
+    //return result like title or like description
+    return DB::table('question')
+      ->where('title', 'like', $search.'%')
+      ->orWhere('description', 'like', $search.'%')
+      ->get();
   }
 
   //GET ONE
