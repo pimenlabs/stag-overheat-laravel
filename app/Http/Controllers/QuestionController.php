@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
 
   //GET ALL
   public function index(){
-    return response()->json("this is question page");
+    return DB::table('question')->get();
   }
 
   //GET ONE
@@ -20,14 +21,11 @@ class QuestionController extends Controller
   /** POST
   * return json response with array with field input and result
   * input: get all request from a Form
-  * result: just plain string value to inform user
+  * result: nothing
   **/
   public function store(Request $request){
-
-    return response()->json([
-      "input"=>$request->all(),
-      "result"=>"store question with object from POST data"
-    ]);
+    $doc = $request->all(); //data from Form obj state
+    DB::table('question')->insert($doc); //use query builder to insert
   }
 
   /** PUT
