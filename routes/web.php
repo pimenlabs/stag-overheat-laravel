@@ -15,12 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('question', 'QuestionController@index');
+Route::group(['prefix' => 'api/v1'], function () {
+  //use this router instead to make it efficience
+  Route::resource('question', 'QuestionController');
 
-Route::get('question/{id}', 'QuestionController@show');
-
-Route::post('question', 'QuestionController@store');
-
-Route::put('question/{id}', 'QuestionController@update');
-
-Route::delete('question/{id}', 'QuestionController@destroy');
+  Route::resource('question.answers', 'AnswerController');
+});

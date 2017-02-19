@@ -12,7 +12,9 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'question',
-        'question/*',
+        //change with prefix api/v1/
+        'api/v1/question',
+        'api/v1/question/*',
+        'api/v1/question/*/answers',
     ];
 }
