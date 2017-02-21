@@ -36,6 +36,7 @@ class QuestionController extends Controller
   public function store(Request $request){
     $doc = $request->all(); //data from Form obj state
     DB::table('question')->insert($doc); //use query builder to insert
+    return response()->json('success'); //tell that storing data success
   }
 
   /** PUT
